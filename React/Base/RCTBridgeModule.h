@@ -62,7 +62,13 @@ extern dispatch_queue_t RCTJSThread;
  */
 #define RCT_EXPORT_MODULE(js_name) \
 RCT_EXTERN void RCTRegisterModule(Class); \
-+ (NSString *)moduleName { return @#js_name; } \
++ (NSString *)moduleName { \
+  if ([NSStringFromClass([self class]) rangeOfString:@"RCT"].location != NSNotFound) { \
+    return [NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"BNA_" withString:@""]; \
+  } else { \
+    return @#js_name; \
+  }\
+}\
 + (void)load { RCTRegisterModule(self); }
 
 // Implemented by RCT_EXPORT_MODULE
