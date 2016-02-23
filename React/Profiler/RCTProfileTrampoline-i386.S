@@ -9,6 +9,7 @@
 
 #include "RCTDefines.h"
 #include "RCTMacros.h"
+#include "NamespacedDependencies.h"
 
 #if RCT_DEV && defined(__i386__)
 
